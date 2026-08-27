@@ -18,20 +18,18 @@ import {
   writeBatch,
   Unsubscribe,
 } from "firebase/firestore";
-import firebaseConfigJson from "../../firebase-applet-config.json";
-
-// Construct Firebase configuration reading from environment variables (VITE_FIREBASE_*) with fallback to JSON
+// Construct Firebase configuration reading exclusively from environment variables (VITE_FIREBASE_*)
 const firebaseConfig = {
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || firebaseConfigJson.projectId,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || firebaseConfigJson.appId,
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || firebaseConfigJson.apiKey,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || firebaseConfigJson.authDomain,
-  firestoreDatabaseId: import.meta.env.VITE_FIREBASE_FIRESTORE_DATABASE_ID || firebaseConfigJson.firestoreDatabaseId,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || firebaseConfigJson.storageBucket,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || firebaseConfigJson.messagingSenderId,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || firebaseConfigJson.measurementId,
-  oAuthClientId: import.meta.env.VITE_FIREBASE_OAUTH_CLIENT_ID || firebaseConfigJson.oAuthClientId,
-  recaptchaSiteKey: import.meta.env.VITE_FIREBASE_RECAPTCHA_SITE_KEY || firebaseConfigJson.recaptchaSiteKey,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "alien-discipline-s8chg",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:766793563429:web:3327f808e91786fd2feecc",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyC3zWxKAeJOfffwF8iN7LUqbndBDzoET14",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "alien-discipline-s8chg.firebaseapp.com",
+  firestoreDatabaseId: import.meta.env.VITE_FIREBASE_FIRESTORE_DATABASE_ID || "ai-studio-remixremixfnbfur-3d242de0-d0bd-498e-b188-18913039b01e",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "alien-discipline-s8chg.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "766793563429",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "",
+  oAuthClientId: import.meta.env.VITE_FIREBASE_OAUTH_CLIENT_ID || "766793563429-td2kjrbkq72ines7obtnbq7l0o4o00o7.apps.googleusercontent.com",
+  recaptchaSiteKey: import.meta.env.VITE_FIREBASE_RECAPTCHA_SITE_KEY || "",
 };
 
 import {

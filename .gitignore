@@ -5,18 +5,10 @@ coverage/
 .DS_Store
 *.log
 
-# Environment variables
+# Environment variables & sensitive credential configs
 .env
 .env.local
 .env.*.local
 .env*
 !.env.example
-
-
-.env
-.env.local
-.env.*.local
-
-.env
-.env.local
-.env.*.local
+firebase-applet-config.json
