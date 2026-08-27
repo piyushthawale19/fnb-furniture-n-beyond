@@ -31,28 +31,48 @@ export default function AdminLoginModal({
     setErrorMessage("");
     setIsSubmitting(true);
 
+    const inputUser = username.trim();
+    const inputPass = password;
+
+    const envUser = (import.meta.env.VITE_ADMIN_USERNAME || "").trim();
+    const envPass = (import.meta.env.VITE_ADMIN_PASSWORD || "").trim();
+
+    const isEnvMatch =
+      envUser !== "" &&
+      envPass !== "" &&
+      inputUser.toLowerCase() === envUser.toLowerCase() &&
+      inputPass === envPass;
+
     try {
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username.trim(), password }),
+        body: JSON.stringify({ username: inputUser, password: inputPass }),
       });
 
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok && data.success) {
-        setIsSubmitting(false);
-        onLoginSuccess();
-      } else {
-        setIsSubmitting(false);
-        setErrorMessage(data.error || "Invalid Administrator credentials. Access denied.");
+      if (response.ok) {
+        const data = await response.json().catch(() => ({}));
+        if (data.success) {
+          setIsSubmitting(false);
+          onLoginSuccess();
+          return;
+        }
       }
+
+      // If backend API endpoint returns 405 Method Not Allowed or 404 Not Found on static host
+      if (response.status === 405 || response.status === 404 || response.status === 502) {
+        if (isEnvMatch) {
+          setIsSubmitting(false);
+          onLoginSuccess();
+          return;
+        }
+      }
+
+      setIsSubmitting(false);
+      setErrorMessage("Invalid Administrator credentials. Access denied.");
     } catch (err: any) {
       console.warn("API login endpoint error, verifying through fallback:", err);
-      // Fallback check in case backend endpoint is unreachable during isolated tests
-      const fallbackUser = (import.meta as any).env?.VITE_ADMIN_USERNAME;
-      const fallbackPass = (import.meta as any).env?.VITE_ADMIN_PASSWORD;
-      if (username.trim() === fallbackUser && password === fallbackPass) {
+      if (isEnvMatch) {
         setIsSubmitting(false);
         onLoginSuccess();
       } else {
