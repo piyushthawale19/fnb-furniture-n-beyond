@@ -50,8 +50,8 @@ export default function AdminLoginModal({
     } catch (err: any) {
       console.warn("API login endpoint error, verifying through fallback:", err);
       // Fallback check in case backend endpoint is unreachable during isolated tests
-      const fallbackUser = (import.meta as any).env?.VITE_ADMIN_USERNAME || "omkar123";
-      const fallbackPass = (import.meta as any).env?.VITE_ADMIN_PASSWORD || "omkar@123";
+      const fallbackUser = (import.meta as any).env?.VITE_ADMIN_USERNAME;
+      const fallbackPass = (import.meta as any).env?.VITE_ADMIN_PASSWORD;
       if (username.trim() === fallbackUser && password === fallbackPass) {
         setIsSubmitting(false);
         onLoginSuccess();
@@ -65,7 +65,7 @@ export default function AdminLoginModal({
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center overflow-y-auto bg-stone-950/80 p-4 backdrop-blur-md animate-fadeIn">
       <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-amber-900/30 bg-stone-900 p-6 sm:p-8 text-white shadow-2xl">
-        
+
         {/* Ambient Top Glow */}
         <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-amber-600/15 blur-2xl pointer-events-none"></div>
         <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-amber-800/15 blur-2xl pointer-events-none"></div>

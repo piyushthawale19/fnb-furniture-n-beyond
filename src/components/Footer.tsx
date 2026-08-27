@@ -91,6 +91,11 @@ export default function Footer({ categories, setCurrentTab, onSelectCategory, se
                   About Our Factory
                 </button>
               </li>
+              <li className="pt-2 border-t border-stone-800/80">
+                <button onClick={() => handleTabChange("admin")} className="text-xs text-stone-500 hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                  <span>🔒 Admin Console</span>
+                </button>
+              </li>
             </ul>
           </div>
 
