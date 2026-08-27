@@ -120,6 +120,14 @@ export default function ProductDetailModal({
     setSelectedFabric(product.fabrics[0] || "None");
   }, [product]);
 
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const category = categories.find((c) => c.id === product.categoryId);
   const subCategory = subCategories.find((sc) => sc.id === product.subCategoryId);
 
@@ -170,37 +178,38 @@ export default function ProductDetailModal({
 
   return (
     <>
-      <div className="fixed inset-0 z-[90] overflow-y-auto bg-stone-950/60 backdrop-blur-sm pt-[68px] sm:pt-[76px] flex items-center justify-center p-3 sm:p-4">
-      <div className="relative w-full max-w-6xl rounded-3xl bg-white shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-all duration-300">
-        
-        {/* Top Premium Badge / Close header */}
-        <div className="flex items-center justify-between border-b border-stone-200/60 px-6 py-4 bg-stone-50 shrink-0">
-          <div className="flex items-center space-x-2">
-            <span className="inline-flex items-center rounded-md bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 ring-1 ring-inset ring-amber-600/10">
-              {category?.name}
-            </span>
-            {subCategory && (
-              <>
-                <span className="text-stone-300 text-xs">/</span>
-                <span className="text-stone-500 text-xs font-medium">{subCategory.name}</span>
-              </>
-            )}
-          </div>
+      <div className="fixed inset-0 z-[200] overflow-y-auto bg-stone-950/75 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+        <div className="relative w-full max-w-4xl lg:max-w-5xl rounded-3xl bg-white shadow-2xl overflow-hidden max-h-[85vh] sm:max-h-[88vh] flex flex-col transition-all duration-300 border border-stone-200">
           
-          <div className="flex items-center space-x-2.5">
-            <button
-              onClick={onClose}
-              className="rounded-full bg-stone-100 p-2 text-stone-600 hover:bg-stone-900 hover:text-white transition-all focus:outline-none"
-              aria-label="Close dialog"
-              id="close-modal-button"
-            >
-              <X className="h-5 w-5" />
-            </button>
+          {/* Top Sticky Header with Category Breadcrumbs & Prominent Close Button */}
+          <div className="sticky top-0 z-30 flex items-center justify-between border-b border-stone-200/80 px-5 py-3.5 bg-stone-50/95 backdrop-blur-md shrink-0">
+            <div className="flex items-center space-x-2">
+              <span className="inline-flex items-center rounded-md bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 ring-1 ring-inset ring-amber-600/10">
+                {category?.name}
+              </span>
+              {subCategory && (
+                <>
+                  <span className="text-stone-300 text-xs">/</span>
+                  <span className="text-stone-500 text-xs font-medium">{subCategory.name}</span>
+                </>
+              )}
+            </div>
+            
+            <div className="flex items-center space-x-2.5">
+              <button
+                onClick={onClose}
+                className="rounded-full bg-stone-900 p-2 text-white hover:bg-amber-800 hover:scale-105 active:scale-95 transition-all focus:outline-none shadow-md cursor-pointer"
+                aria-label="Close dialog"
+                id="close-modal-button"
+                title="Close Window"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Content body (Scrollable) */}
-        <div className="overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 flex-1">
+          {/* Content body (Scrollable) */}
+          <div className="overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 flex-1">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             
             {/* Left Column: Flipkart/Amazon-style interactive galleries (lg:col-span-7) */}
