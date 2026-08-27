@@ -21,7 +21,7 @@ export default function ProductCard({ product, categories, onOpenDetails }: Prod
 
   const handleShareProductCard = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const shareUrl = `${window.location.origin}/share/${product.id}`;
+    const shareUrl = `${window.location.origin}/?product=${product.id}`;
     if (navigator.share) {
       navigator.share({
         title: product.name,

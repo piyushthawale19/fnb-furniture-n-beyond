@@ -351,13 +351,39 @@ export default function App() {
     };
   }, []);
 
-  // Handle shared product loading automatically
+  // Handle shared product loading automatically (supports /share/prod-id, ?product=prod-id, #product=prod-id)
   useEffect(() => {
     if (products.length > 0) {
-      const params = new URLSearchParams(window.location.search);
-      const prodId = params.get("product") || params.get("productId");
-      if (prodId) {
-        const found = products.find((p) => p.id === prodId);
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+
+      let targetId: string | null = null;
+
+      // 1. Check pathname for /share/prod-id or /product/prod-id
+      if (path.includes("/share/")) {
+        targetId = path.split("/share/")[1];
+      } else if (path.includes("/product/")) {
+        targetId = path.split("/product/")[1];
+      }
+
+      // 2. Check query params ?product=prod-id or ?productId=prod-id or ?id=prod-id
+      if (!targetId && search) {
+        const params = new URLSearchParams(search);
+        targetId = params.get("product") || params.get("productId") || params.get("id");
+      }
+
+      // 3. Check hash #product=prod-id
+      if (!targetId && hash.includes("product=")) {
+        targetId = hash.split("product=")[1];
+      }
+
+      if (targetId) {
+        // Remove trailing parameters or slashes
+        const cleanId = targetId.split("?")[0].split("&")[0].replace(/\/$/, "");
+        const found = products.find(
+          (p) => p.id === cleanId || p.id.toLowerCase() === cleanId.toLowerCase()
+        );
         if (found) {
           setActiveProduct(found);
         }

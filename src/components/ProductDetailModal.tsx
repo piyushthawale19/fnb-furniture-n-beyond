@@ -65,7 +65,7 @@ export default function ProductDetailModal({
   };
 
   const handleShareProduct = () => {
-    const shareUrl = `${window.location.origin}/share/${product.id}?color=${encodeURIComponent(selectedColor)}`;
+    const shareUrl = `${window.location.origin}/?product=${product.id}&color=${encodeURIComponent(selectedColor)}`;
     
     if (navigator.share) {
       navigator.share({
