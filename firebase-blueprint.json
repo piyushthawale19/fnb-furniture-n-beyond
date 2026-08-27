@@ -1,0 +1,239 @@
+{
+  "entities": {
+    "categories": {
+      "title": "Category",
+      "description": "Master furniture and decor categories",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string", "description": "Cover Image stored directly in Firebase with automated max 3MB compression" }
+      },
+      "required": ["id", "name", "image"]
+    },
+    "subcategories": {
+      "title": "SubCategory",
+      "description": "Specific subcategories linked to parent categories",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["id", "categoryId", "name"]
+    },
+    "products": {
+      "title": "Product",
+      "description": "Full product catalog with direct Firebase image storage, specifications, colors, and 3D models",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "shortDescription": { "type": "string" },
+        "description": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "subCategoryId": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "colorMap": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "color": { "type": "string" },
+              "image": { "type": "string" }
+            }
+          }
+        },
+        "fabrics": { "type": "array", "items": { "type": "string" } },
+        "material": { "type": "string" },
+        "woodType": { "type": "string" },
+        "finish": { "type": "string" },
+        "dimensions": { "type": "string" },
+        "warranty": { "type": "string" },
+        "availability": { "type": "string", "enum": ["In Stock", "Made to Order", "Out of Stock"] },
+        "price": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "newest": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "glbModelUrl": { "type": "string" },
+        "usdzModelUrl": { "type": "string" }
+      },
+      "required": ["id", "name", "categoryId", "images"]
+    },
+    "banners": {
+      "title": "Banner",
+      "description": "Promotional and hero carousel banners stored in Firebase",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "linkType": { "type": "string", "enum": ["explore", "repair", "whatsapp"] }
+      },
+      "required": ["id", "imageUrl", "title"]
+    },
+    "testimonials": {
+      "title": "Testimonial",
+      "description": "Client reviews displayed on the website",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "comment": { "type": "string" },
+        "rating": { "type": "number" }
+      },
+      "required": ["id", "name", "comment", "rating"]
+    },
+    "about": {
+      "title": "AboutContent",
+      "description": "Brand story, metrics, craft pillars, and showroom locations",
+      "type": "object",
+      "properties": {
+        "tagline": { "type": "string" },
+        "title": { "type": "string" },
+        "paragraph1": { "type": "string" },
+        "paragraph2": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "stat1Value": { "type": "string" },
+        "stat1Label": { "type": "string" },
+        "stat2Value": { "type": "string" },
+        "stat2Label": { "type": "string" },
+        "pillarsTitle": { "type": "string" },
+        "pillars": { "type": "array" },
+        "locationsTitle": { "type": "string" },
+        "locations": { "type": "array" }
+      }
+    },
+    "feedbacks": {
+      "title": "UserFeedback",
+      "description": "Customer feedback submissions with optional photos",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "city": { "type": "string" },
+        "productPurchased": { "type": "string" },
+        "comment": { "type": "string" },
+        "rating": { "type": "number" },
+        "imageUrl": { "type": "string" },
+        "pushedToHome": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Archived"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "comment", "rating"]
+    },
+    "repair_requests": {
+      "title": "RepairRequest",
+      "description": "Customer repair and restoration service inquiry logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "serviceCategory": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "preferredDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "In Progress", "Completed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "customerName", "phone", "serviceCategory"]
+    },
+    "bulk_orders": {
+      "title": "BulkOrderRequest",
+      "description": "B2B commercial and institutional bulk purchase inquiries",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientName": { "type": "string" },
+        "companyName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "clientType": { "type": "string" },
+        "description": { "type": "string" },
+        "preferredDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Reviewed", "Contacted"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientName", "phone", "clientType"]
+    },
+    "repair_images": {
+      "title": "RepairReferenceImage",
+      "description": "Gallery of repair craftsmanship and restoration reference images",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "imageUrl"]
+    },
+    "site_settings": {
+      "title": "SiteSettings",
+      "description": "Global store settings, contact details, and brand configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeName": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "contactPhone": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "address": { "type": "string" },
+        "storageProvider": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "categories",
+      "description": "Furniture master category documents"
+    },
+    "/subcategories/{subCategoryId}": {
+      "schema": "subcategories",
+      "description": "Subcategories linked to master categories"
+    },
+    "/products/{productId}": {
+      "schema": "products",
+      "description": "Full product specifications, pricing, stock and gallery"
+    },
+    "/banners/{bannerId}": {
+      "schema": "banners",
+      "description": "Hero section banner carousels"
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "testimonials",
+      "description": "Customer testimonials and ratings"
+    },
+    "/about/{aboutDocId}": {
+      "schema": "about",
+      "description": "About company story, values, and showroom addresses"
+    },
+    "/feedbacks/{feedbackId}": {
+      "schema": "feedbacks",
+      "description": "User reviews and pushed home feed testimonials"
+    },
+    "/repair_requests/{requestId}": {
+      "schema": "repair_requests",
+      "description": "Customer furniture repair inquiries"
+    },
+    "/bulk_orders/{orderId}": {
+      "schema": "bulk_orders",
+      "description": "B2B and commercial bulk quote inquiries"
+    },
+    "/repair_images/{imageId}": {
+      "schema": "repair_images",
+      "description": "Repair restoration craftsmanship gallery images"
+    },
+    "/site_settings/{settingId}": {
+      "schema": "site_settings",
+      "description": "Global store settings, contact details, and brand configuration"
+    }
+  }
+}

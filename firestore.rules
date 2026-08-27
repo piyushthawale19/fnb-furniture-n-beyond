@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Furniture catalog, categories & visual banners (Publicly readable, updated by store admin)
+    match /categories/{categoryId} {
+      allow read, write: if true;
+    }
+    match /subcategories/{subCategoryId} {
+      allow read, write: if true;
+    }
+    match /products/{productId} {
+      allow read, write: if true;
+    }
+    match /banners/{bannerId} {
+      allow read, write: if true;
+    }
+    match /testimonials/{testimonialId} {
+      allow read, write: if true;
+    }
+    match /about/{aboutDocId} {
+      allow read, write: if true;
+    }
+    match /repair_images/{imageId} {
+      allow read, write: if true;
+    }
+    
+    // Customer interactions, feedback reviews, repair service requests & B2B quote inquiries
+    match /feedbacks/{feedbackId} {
+      allow read, write: if true;
+    }
+    match /repair_requests/{requestId} {
+      allow read, write: if true;
+    }
+    match /bulk_orders/{orderId} {
+      allow read, write: if true;
+    }
+    
+    // Global admin store configuration, direct Firebase database settings
+    match /site_settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}
+

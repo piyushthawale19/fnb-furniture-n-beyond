@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Immersive UI Palette Colors */
+  --color-luxury-bg: #F5F2ED;
+  --color-luxury-text: #262626;
+  --color-luxury-gold: #D4AF37;
+  --color-luxury-brown: #5D4037;
+  --color-luxury-dark: #3E2A23;
+  --color-luxury-espresso: #2A1B16;
+  --color-luxury-muted: #8C7E6A;
+  --color-luxury-whatsapp: #25D366;
+  --color-luxury-whatsapp-dark: #075E54;
+
+  /* Overrides for standard stone/amber/slate colors to align all pre-existing UI modules with the theme */
+  --color-stone-50: #F5F2ED;
+  --color-stone-100: #E6E1D6;
+  --color-stone-200: rgba(212, 175, 55, 0.2);
+  --color-stone-300: #8C7E6A;
+  --color-stone-400: #8C7E6A;
+  --color-stone-500: #5D4037;
+  --color-stone-600: #5D4037;
+  --color-stone-700: #3E2A23;
+  --color-stone-800: #262626;
+  --color-stone-900: #2A1B16;
+  --color-stone-950: #1D120F;
+
+  --color-amber-50: #F5F2ED;
+  --color-amber-100: #E6E1D6;
+  --color-amber-200: rgba(212, 175, 55, 0.3);
+  --color-amber-300: #D4AF37;
+  --color-amber-400: #D4AF37;
+  --color-amber-500: #D4AF37;
+  --color-amber-600: #D4AF37;
+  --color-amber-700: #D4AF37;
+  --color-amber-800: #5D4037;
+  --color-amber-900: #3E2A23;
+  --color-amber-950: #2A1B16;
+}
+
+/* Luxury accent rules and custom styling helpers */
+body {
+  background-color: #F5F2ED;
+  color: #262626;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury Top Accent Line */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #D4AF37;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Custom premium ambient lighting shadows and overlays */
+.luxury-lighting-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.03), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(93, 64, 55, 0.03), transparent 60%);
+}
+
+.luxury-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px -2px rgba(93, 64, 55, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 12px 30px -4px rgba(93, 64, 55, 0.08);
+}
+
+.luxury-button-primary {
+  background-color: #5D4037;
+  color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-button-primary:hover {
+  background-color: #3E2A23;
+  box-shadow: 0 4px 12px rgba(93, 64, 55, 0.2);
+}
+
+.luxury-button-secondary {
+  border: 1px solid #5D4037;
+  color: #5D4037;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-button-secondary:hover {
+  background-color: #5D4037;
+  color: #ffffff;
+}
+
+/* 3D Card Flipping Styles for Premium Category Hover */
+.perspective-3d {
+  perspective: 1500px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Scrollbar hiding helper */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+

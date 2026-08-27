@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix FNB Furniture N Beyond",
+  "description": "Premium, modern, and elegant furniture website for FNB Furniture N Beyond. Browse premium furniture collections, customize fabrics and finishes, and place inquiries via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
