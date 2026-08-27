@@ -20,15 +20,15 @@ import {
 } from "firebase/firestore";
 // Construct Firebase configuration reading exclusively from environment variables (VITE_FIREBASE_*)
 const firebaseConfig = {
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "alien-discipline-s8chg",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:766793563429:web:3327f808e91786fd2feecc",
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyC3zWxKAeJOfffwF8iN7LUqbndBDzoET14",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "alien-discipline-s8chg.firebaseapp.com",
-  firestoreDatabaseId: import.meta.env.VITE_FIREBASE_FIRESTORE_DATABASE_ID || "ai-studio-remixremixfnbfur-3d242de0-d0bd-498e-b188-18913039b01e",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "alien-discipline-s8chg.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "766793563429",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
+  firestoreDatabaseId: import.meta.env.VITE_FIREBASE_FIRESTORE_DATABASE_ID || "",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "",
-  oAuthClientId: import.meta.env.VITE_FIREBASE_OAUTH_CLIENT_ID || "766793563429-td2kjrbkq72ines7obtnbq7l0o4o00o7.apps.googleusercontent.com",
+  oAuthClientId: import.meta.env.VITE_FIREBASE_OAUTH_CLIENT_ID || "",
   recaptchaSiteKey: import.meta.env.VITE_FIREBASE_RECAPTCHA_SITE_KEY || "",
 };
 
